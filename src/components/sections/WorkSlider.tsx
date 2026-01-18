@@ -148,7 +148,7 @@ export default function WorkSlider({ id }: { id?: string }) {
             </div>
 
             <div
-                className="relative w-full min-h-screen"
+                className="relative w-full min-h-[140vh] md:min-h-screen"
                 style={{
                     clipPath: "polygon(0% 100px, 55% 100px, 60% 0%, 100% 0%, 100% 100%, 0% 100%)",
                 }}
@@ -165,7 +165,7 @@ export default function WorkSlider({ id }: { id?: string }) {
                         <SwiperSlide key={idx} className="w-full h-full">
                             {/* Slide Container: MUST have opaque background to prevent bleed-through */}
                             <div
-                                className="flex flex-col lg:flex-row h-full items-center gap-8 lg:gap-20 px-4 md:px-12 pt-[120px] md:pt-[140px] pb-24 transition-colors duration-700"
+                                className="flex flex-col lg:flex-row min-h-[140vh] lg:min-h-full items-center gap-8 lg:gap-20 px-4 md:px-12 pt-[120px] md:pt-[140px] pb-[250px] md:pb-64 transition-colors duration-700"
                                 style={{ backgroundColor: project.bg }}
                             >
 

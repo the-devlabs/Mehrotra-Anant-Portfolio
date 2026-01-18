@@ -10,7 +10,7 @@ export default function Services({ id }: { id?: string }) {
     return (
         <section
             id={id}
-            className="relative z-30 -mt-[50px] md:-mt-[100px] pt-[150px] md:pt-[200px] pb-32 bg-black text-white min-h-screen"
+            className="relative z-30 -mt-[100px] md:-mt-[100px] pt-[200px] md:pt-[200px] pb-32 bg-black text-white min-h-screen"
             style={{
                 // Inverted Folder Tab Shape
                 clipPath: "polygon(0% 100px, 55% 100px, 60% 0%, 100% 0%, 100% 100%, 0% 100%)",
