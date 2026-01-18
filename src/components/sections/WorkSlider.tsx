@@ -1,11 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
-import { Navigation, EffectCreative, Parallax, Autoplay, EffectFade } from "swiper/modules";
-import { ArrowLeft, ArrowRight, Github, Brain, Database, FileText, Terminal, Layers, Sparkles, AppWindow, Sigma } from "lucide-react";
-import { useGSAP } from "@gsap/react";
+import { Autoplay } from "swiper/modules";
+import { ArrowLeft, ArrowRight, Github } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
@@ -16,17 +15,7 @@ import "swiper/css/effect-creative";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 
-// Custom Python Icon Component (Simple Icons)
-const PythonIcon = ({ className }: { className?: string }) => (
-    <svg role="img" viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
-        <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.83l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.13.37-.07.35-.03.32-.02.27 0 .21.02.13v5.69l.06.63.13.55.21.46.26.38.3.31.33.25.35.19.35.14.33.1.3.07.26.04.21.02H18.87l.69-.05.59-.14.5-.22.41-.27.33-.32.27-.35.2-.36.13-.37.07-.35.03-.32.02-.27 0-.21-.02-.13V8.5l-.06-.63-.13-.55-.21-.46-.26-.38-.3-.31-.33-.25-.35-.19-.35-.14-.33-.1-.3-.07-.26-.04-.21-.02h-4.66l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.13.37-.07.35-.03.32-.02.27 0 .21.02.13v3.75l.1.58.26.54.4.45.52.32.61.16H18.91l.63-.07.59-.22.5-.38.37-.53.21-.66.03-.78V8.5l-.06-.63-.13-.55.21-.46-.26-.38-.3-.31-.33-.25-.35-.19-.35-.14-.33-.1-.3-.07-.26-.04-.21-.02h-2.13l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.13.37-.07.35-.03.32-.02.27 0 .21.02.13M6.15 6.38l.68.17.58.33.43.48.24.64-.01.78-.26.7-1.46 1.48-.5.22-.59.14-.69.05H2.17l-.63-.06-.59-.21-.5-.38-.37-.53-.21-.66-.03-.78V5.38l.06-.63.13-.55.21-.46.26-.38.3-.31.33-.25.35-.19.35-.14.33-.1.3-.07.26-.04.21-.02H6.15zM7.5 16.59l.68.17.58.33.43.48.24.64-.01.78-.26.7-1.46 1.48-.5.22-.59.14-.69.05H3.52l-.63-.06-.59-.21-.5-.38-.37-.53-.21-.66-.03-.78v-2.12l.06-.63.13-.55.21-.46.26-.38.3-.31.33-.25.35-.19.35-.14.33-.1.3-.07.26-.04.21-.02H7.5z" />
-    </svg>
-);
 
-interface TechItem {
-    name: string;
-    icon: any; // Using 'any' for Lucide/Custom components flexibility
-}
 
 interface Project {
     id: string;
@@ -80,25 +69,11 @@ const projects: Project[] = [
     }
 ];
 
-// Helper to get icon for tech name
-const getTechIcon = (name: string) => {
-    const lower = name.toLowerCase();
-    if (lower.includes("python")) return PythonIcon;
-    if (lower.includes("github")) return Github;
-    if (lower.includes("ai") || lower.includes("gemini") || lower.includes("nlp")) return Sparkles;
-    if (lower.includes("data") || lower.includes("pandas") || lower.includes("numpy") || lower.includes("faiss")) return Database;
-    if (lower.includes("scikit") || lower.includes("learning")) return Brain;
-    if (lower.includes("streamlit") || lower.includes("app")) return AppWindow;
-    if (lower.includes("pdf")) return FileText;
-    return Terminal; // Default
-};
+
 
 export default function WorkSlider({ id }: { id?: string }) {
-    const [activeIndex, setActiveIndex] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
     const swiperRef = useRef<SwiperType | null>(null);
-
-    const { contextSafe } = useGSAP({ scope: containerRef });
 
     const handleImageEnter = () => {
         if (swiperRef.current && swiperRef.current.autoplay) {
@@ -155,7 +130,6 @@ export default function WorkSlider({ id }: { id?: string }) {
             >
                 <Swiper
                     onSwiper={(swiper) => (swiperRef.current = swiper)}
-                    onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
                     speed={800}
                     loop={true}
                     modules={[Autoplay]}
