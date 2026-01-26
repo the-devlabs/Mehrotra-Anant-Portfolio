@@ -29,8 +29,8 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Agency Clone",
-  description: "Premium Agency Portfolio",
+  title: "Anant Mehrotra",
+  description: "Portfolio",
 };
 
 export const viewport: Viewport = {

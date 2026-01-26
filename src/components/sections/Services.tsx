@@ -5,7 +5,37 @@ import { ArrowRight, ChevronDown, GraduationCap, Briefcase } from "lucide-react"
 import { cn } from "@/lib/utils";
 
 export default function Services({ id }: { id?: string }) {
-    const [isExpanded, setIsExpanded] = useState(false);
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
+    const EXPERIENCE_DATA = [
+        {
+            role: "Technology Consulting Intern — EY GDS",
+            designation: "Technology Consultant Intern",
+            company: "EY Global Delivery Services",
+            duration: "Mar 2025 – Aug 2025",
+            location: "Chennai, India",
+            points: [
+                "Automated 30+ test workflows using Python & Selenium WebDriver, cutting manual testing time by 40% and improving regression accuracy.",
+                "Designed and executed test cases for policy issuance, claims, underwriting, and billing modules, ensuring 100% compliance with insurance domain requirements.",
+                "Managed and tracked 200+ defects through Jira & HP ALM, reducing defect resolution turnaround time by 25%.",
+                "Worked in Agile Scrum teams, leveraging Confluence, Git, and automation feasibility analysis, helping accelerate sprint cycles by 25%.",
+                "Gained exposure to SDLC, STLC, automation frameworks, and QA best practices, bridging testing and development for higher-quality releases."
+            ]
+        },
+        {
+            role: "Software Developer Intern",
+            designation: "Software Developer Intern",
+            company: "Amplify.ai",
+            duration: "2024",
+            location: "India",
+            points: [
+                "Worked on production conversational AI systems used across WhatsApp and web platforms.",
+                "Built backend workflows, automation logic, and API integrations.",
+                "Contributed to NLP-driven features such as sentiment analysis and response handling.",
+                "Gained experience working in fast-paced, ownership-driven startup teams."
+            ]
+        }
+    ];
 
     return (
         <section
@@ -75,63 +105,68 @@ export default function Services({ id }: { id?: string }) {
                             <h2 className="text-xl font-mono uppercase tracking-widest">Experience</h2>
                         </div>
 
-                        {/* Interactive Card */}
-                        <div
-                            className={cn(
-                                "group relative border border-white/10 bg-white/5 rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer",
-                                isExpanded ? "bg-white/10 border-white/20" : "hover:border-white/30 hover:bg-white/10"
-                            )}
-                            onClick={() => setIsExpanded(!isExpanded)}
-                        >
-                            {/* Card Header */}
-                            <div className="p-8 pb-4">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div>
-                                        <h3 className="text-2xl md:text-3xl font-bold font-oswald text-white mb-2">
-                                            Intern at EY
-                                        </h3>
-                                        <p className="text-lg text-neutral-300">Technology Consultant Intern</p>
+                        <div className="space-y-4">
+                            {EXPERIENCE_DATA.map((exp, index) => {
+                                const isExpanded = expandedIndex === index;
+                                return (
+                                    <div
+                                        key={index}
+                                        className={cn(
+                                            "group relative border border-white/10 bg-white/5 rounded-2xl overflow-hidden transition-all duration-500 cursor-pointer",
+                                            isExpanded ? "bg-white/10 border-white/20" : "hover:border-white/30 hover:bg-white/10"
+                                        )}
+                                        onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                                    >
+                                        {/* Card Header */}
+                                        <div className="p-8 pb-4">
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h3 className="text-2xl md:text-3xl font-bold font-oswald text-white mb-2">
+                                                        {exp.role}
+                                                    </h3>
+                                                    <p className="text-lg text-neutral-300">{exp.designation}</p>
+                                                </div>
+                                                <div className={cn(
+                                                    "bg-white/10 p-2 rounded-full transition-transform duration-300",
+                                                    isExpanded ? "rotate-180" : "group-hover:translate-y-1"
+                                                )}>
+                                                    <ChevronDown className="w-5 h-5" />
+                                                </div>
+                                            </div>
+
+                                            <div className="flex flex-wrap gap-4 text-sm font-mono text-neutral-500 mb-4">
+                                                <span>{exp.company}</span>
+                                                <span>•</span>
+                                                <span>{exp.duration}</span>
+                                                <span>•</span>
+                                                <span>{exp.location}</span>
+                                            </div>
+
+                                            {/* Hover Prompt (Hidden when expanded) */}
+                                            <div className={cn(
+                                                "flex items-center gap-2 text-brand-gold text-sm font-bold uppercase tracking-wider transition-opacity duration-300",
+                                                isExpanded ? "opacity-0 h-0" : "opacity-0 group-hover:opacity-100"
+                                            )}>
+                                                Know More <ArrowRight className="w-4 h-4" />
+                                            </div>
+                                        </div>
+
+                                        {/* Expanded Content */}
+                                        <div
+                                            className={cn(
+                                                "px-8 text-neutral-300 transition-all duration-500 ease-in-out overflow-hidden",
+                                                isExpanded ? "max-h-[500px] pb-8 opacity-100" : "max-h-0 opacity-0"
+                                            )}
+                                        >
+                                            <ul className="space-y-3 list-disc pl-4 marker:text-brand-gold">
+                                                {exp.points.map((point, i) => (
+                                                    <li key={i}>{point}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className={cn(
-                                        "bg-white/10 p-2 rounded-full transition-transform duration-300",
-                                        isExpanded ? "rotate-180" : "group-hover:translate-y-1"
-                                    )}>
-                                        <ChevronDown className="w-5 h-5" />
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-wrap gap-4 text-sm font-mono text-neutral-500 mb-4">
-                                    <span>EY Global Delivery Services</span>
-                                    <span>•</span>
-                                    <span>Mar 2025 – Aug 2025</span>
-                                    <span>•</span>
-                                    <span>Chennai, India</span>
-                                </div>
-
-                                {/* Hover Prompt (Hidden when expanded) */}
-                                <div className={cn(
-                                    "flex items-center gap-2 text-brand-gold text-sm font-bold uppercase tracking-wider transition-opacity duration-300",
-                                    isExpanded ? "opacity-0 h-0" : "opacity-0 group-hover:opacity-100"
-                                )}>
-                                    Know More <ArrowRight className="w-4 h-4" />
-                                </div>
-                            </div>
-
-                            {/* Expanded Content */}
-                            <div
-                                className={cn(
-                                    "px-8 text-neutral-300 transition-all duration-500 ease-in-out overflow-hidden",
-                                    isExpanded ? "max-h-[500px] pb-8 opacity-100" : "max-h-0 opacity-0"
-                                )}
-                            >
-                                <ul className="space-y-3 list-disc pl-4 marker:text-brand-gold">
-                                    <li>Automated 30+ test workflows using Python & Selenium WebDriver, cutting manual testing time by 40% and improving regression accuracy.</li>
-                                    <li>Designed and executed test cases for policy issuance, claims, underwriting, and billing modules, ensuring 100% compliance with insurance domain requirements.</li>
-                                    <li>Managed and tracked 200+ defects through Jira & HP ALM, reducing defect resolution turnaround time by 25%.</li>
-                                    <li>Worked in Agile Scrum teams, leveraging Confluence, Git, and automation feasibility analysis, helping accelerate sprint cycles by 25%.</li>
-                                    <li>Gained exposure to SDLC, STLC, automation frameworks, and QA best practices, bridging testing and development for higher-quality releases.</li>
-                                </ul>
-                            </div>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

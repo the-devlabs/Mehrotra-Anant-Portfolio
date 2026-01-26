@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ArrowRight, Trophy } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -14,12 +14,12 @@ export default function Authority({ id }: { id?: string }) {
     const particlesRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
 
-
-
     const { contextSafe } = useGSAP({ scope: containerRef });
 
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Particle System Effect
     useEffect(() => {
-        // Particle System with Mouse Repulsion
         if (!particlesRef.current) return;
 
         const particleCount = 20;
@@ -81,9 +81,7 @@ export default function Authority({ id }: { id?: string }) {
 
                     gsap.to(p, { x: `+=${moveX}`, y: `+=${moveY}`, duration: 0.5, overwrite: "auto" });
                 } else {
-                    // Return to floating state (not perfect return to origin, but stabilizing)
-                    // Simplified: just let the float animation take over, or gently drift back. 
-                    // For now, let's just let them drift.
+                    // Return to floating state
                 }
             });
         };
@@ -96,6 +94,34 @@ export default function Authority({ id }: { id?: string }) {
                 particlesRef.current.removeEventListener("mousemove", handleMouseMove);
             }
         }
+    }, []);
+
+    const slides = [
+        {
+            sub: "A little bit about me...",
+            lines: [
+                "A software engineer deeply",
+                <span key="ai">passionate about <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-800 to-neutral-500">AI</span> and</span>,
+                "building intelligent",
+                "solutions."
+            ]
+        },
+        {
+            sub: "What excites me",
+            lines: [
+                "Early-stage products",
+                "Strong founder vision",
+                "Turning ideas into working software",
+                "Using AI where it actually adds value"
+            ]
+        }
+    ];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentSlide((prev) => (prev + 1) % slides.length);
+        }, 5000);
+        return () => clearInterval(timer);
     }, []);
 
     useGSAP(() => {
@@ -118,7 +144,7 @@ export default function Authority({ id }: { id?: string }) {
                 }
             );
         }
-    }, { scope: containerRef });
+    }, { scope: containerRef }); // Note: This runs once on mount. Text changes will just happen in place.
 
     return (
         <section
@@ -178,16 +204,15 @@ export default function Authority({ id }: { id?: string }) {
                     {/* Floating Particles Area */}
                     <div ref={particlesRef} className="absolute -top-20 -right-20 w-96 h-96 z-0" />
 
-                    <div ref={textRef} className="space-y-4 md:space-y-6 relative z-10 text-center md:text-left">
-                        <span className="inline-block text-base md:text-lg font-[family-name:var(--font-script)] italic text-gray-500 reveal-line block">
-                            A little bit about me...
+                    <div ref={textRef} className="space-y-4 md:space-y-6 relative z-10 text-center md:text-left min-h-[300px]">
+                        <span className="inline-block text-lg md:text-xl font-[family-name:var(--font-inter)] text-gray-500 reveal-line block mb-2 uppercase tracking-widest animate-fade-in">
+                            {slides[currentSlide].sub}
                         </span>
 
                         <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold font-oswald uppercase leading-[0.9] tracking-tight">
-                            <span className="reveal-line block">A software engineer deeply</span>
-                            <span className="reveal-line block">passionate about <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-800 to-neutral-500">AI</span> and</span>
-                            <span className="reveal-line block">building intelligent</span>
-                            <span className="reveal-line block">solutions.</span>
+                            {slides[currentSlide].lines.map((line, i) => (
+                                <span key={i} className="reveal-line block animate-fade-in">{line}</span>
+                            ))}
                         </h2>
                     </div>
 

@@ -33,7 +33,7 @@ interface Project {
 const projects: Project[] = [
     {
         id: "01",
-        title: "AI Email Classifier",
+        title: "NLP-Based Automated Email Classifier",
         tech: ["Python", "Pandas", "NumPy", "scikit-learn"],
         description: "Developed an advanced machine learning-based email classification system that processes and cleans text using NLP techniques to automatically categorize and route emails, improving operational efficiency and customer service.",
         stats: "92% classification accuracy • 60% less manual triage",
@@ -57,7 +57,7 @@ const projects: Project[] = [
     },
     {
         id: "03",
-        title: "PDF AI Assistant",
+        title: "LLM-Powered Interactive PDF Assistant",
         tech: ["Python", "Streamlit", "LangChain", "FAISS", "Google Gemini AI", "PyPDF2"],
         description: "Developed an AI-powered PDF assistant using LangChain and FAISS for semantic search, integrating Google Gemini AI to deliver context-aware responses. Built a Streamlit-based web interface enabling interactive processing of multiple 50+ page PDFs in under 2 seconds.",
         stats: "Process 50+ pages in <2s • 80% efficiency boost",
@@ -169,9 +169,7 @@ export default function WorkSlider({ id }: { id?: string }) {
                                         <div className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-white/30 rounded-tr-xl" />
                                         <div className="absolute bottom-4 left-4 w-12 h-12 border-b-2 border-l-2 border-white/30 rounded-bl-xl" />
                                     </div>
-                                    <div className="absolute -bottom-16 -left-8 hidden lg:block">
-                                        <span className="text-9xl font-oswald text-black/5 font-bold">{project.id}</span>
-                                    </div>
+
                                 </div>
 
                                 {/* Right: Content */}
@@ -184,7 +182,7 @@ export default function WorkSlider({ id }: { id?: string }) {
                                             </div>
                                         </div>
 
-                                        <h3 className={cn("text-4xl md:text-6xl font-black font-oswald uppercase leading-[0.9]", project.accent)}>
+                                        <h3 className={cn("text-3xl md:text-5xl font-black font-oswald uppercase leading-[0.9]", project.accent)}>
                                             {project.title}
                                         </h3>
                                     </div>
