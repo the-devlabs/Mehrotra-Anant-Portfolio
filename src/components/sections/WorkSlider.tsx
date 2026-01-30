@@ -117,7 +117,7 @@ export default function WorkSlider({ id }: { id?: string }) {
                 </div>
 
                 {/* Section Title - Moved to avoid overlap and sit in free space */}
-                <h2 className="hidden md:block absolute -top-20 right-12 text-6xl md:text-7xl font-bold font-oswald text-black/10 uppercase tracking-tighter mix-blend-overlay pointer-events-none">
+                <h2 className="hidden md:block absolute -top-20 right-12 text-6xl md:text-7xl font-bold font-oswald text-black/50 uppercase tracking-tighter mix-blend-overlay pointer-events-none">
                     Projects
                 </h2>
             </div>

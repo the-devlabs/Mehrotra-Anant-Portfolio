@@ -45,7 +45,7 @@ export default function Navbar() {
             <div className="relative z-50 px-8 py-6 w-full flex items-start justify-between mix-blend-difference text-white">
                 {/* Logo */}
                 <div
-                    className="text-4xl font-bold tracking-tighter font-oswald text-white mt-2 cursor-pointer"
+                    className="text-4xl font-bold tracking-tighter font-oswald text-neutral-400 mt-2 cursor-pointer"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 >
                     A/M
@@ -82,9 +82,9 @@ export default function Navbar() {
                         )}
                     >
                         <div className="flex flex-col gap-1.5 w-6">
-                            <span className={cn("w-full h-0.5 bg-white transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-2")} />
-                            <span className={cn("w-full h-0.5 bg-white transition-all duration-300", isMobileMenuOpen && "opacity-0")} />
-                            <span className={cn("w-full h-0.5 bg-white transition-all duration-300", isMobileMenuOpen && "-rotate-45 -translate-y-2")} />
+                            <span className={cn("w-full h-0.5 bg-neutral-400 transition-all duration-300", isMobileMenuOpen && "rotate-45 translate-y-2")} />
+                            <span className={cn("w-full h-0.5 bg-neutral-400 transition-all duration-300", isMobileMenuOpen && "opacity-0")} />
+                            <span className={cn("w-full h-0.5 bg-neutral-400 transition-all duration-300", isMobileMenuOpen && "-rotate-45 -translate-y-2")} />
                         </div>
                     </button>
                 </div>

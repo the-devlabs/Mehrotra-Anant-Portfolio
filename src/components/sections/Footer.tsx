@@ -11,7 +11,7 @@ export default function Footer() {
                     {/* Brand / Name */}
                     <div className="text-center md:text-left">
                         <h2 className="text-2xl font-oswald font-bold uppercase tracking-widest mb-2">
-                            Anant Mehra
+                            ANANT MEHROTRA
                         </h2>
                         <p className="text-neutral-500 font-mono text-sm">
                             Software Engineer & AI Enthusiast

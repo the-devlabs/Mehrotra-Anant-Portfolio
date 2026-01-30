@@ -26,7 +26,7 @@ export default function Services({ id }: { id?: string }) {
             role: "Software Developer Intern",
             designation: "Software Developer Intern",
             company: "Amplify.ai",
-            duration: "2024",
+            duration: "Nov 2025 - Present",
             location: "India",
             points: [
                 "Worked on production conversational AI systems used across WhatsApp and web platforms.",
