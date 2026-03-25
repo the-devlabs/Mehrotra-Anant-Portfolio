@@ -8,6 +8,22 @@ export default function Services({ id }: { id?: string }) {
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
     const EXPERIENCE_DATA = [
+
+                {
+            role: "Software Developer Intern",
+            designation: "Software Developer Intern",
+            company: "Amplify.ai",
+            duration: "Nov 2025 - Present",
+            location: "India",
+            points: [
+                "Worked on production conversational AI systems used across WhatsApp and web platforms.",
+                "Built backend workflows, automation logic, and API integrations.",
+                "Contributed to NLP-driven features such as sentiment analysis and response handling.",
+                "Gained experience working in fast-paced, ownership-driven startup teams."
+            ]
+        },
+
+        
         {
             role: "Technology Consulting Intern — EY GDS",
             designation: "Technology Consultant Intern",
@@ -21,20 +37,8 @@ export default function Services({ id }: { id?: string }) {
                 "Worked in Agile Scrum teams, leveraging Confluence, Git, and automation feasibility analysis, helping accelerate sprint cycles by 25%.",
                 "Gained exposure to SDLC, STLC, automation frameworks, and QA best practices, bridging testing and development for higher-quality releases."
             ]
-        },
-        {
-            role: "Software Developer Intern",
-            designation: "Software Developer Intern",
-            company: "Amplify.ai",
-            duration: "Nov 2025 - Present",
-            location: "India",
-            points: [
-                "Worked on production conversational AI systems used across WhatsApp and web platforms.",
-                "Built backend workflows, automation logic, and API integrations.",
-                "Contributed to NLP-driven features such as sentiment analysis and response handling.",
-                "Gained experience working in fast-paced, ownership-driven startup teams."
-            ]
         }
+
     ];
 
     return (
